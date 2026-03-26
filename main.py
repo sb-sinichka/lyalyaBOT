@@ -1,5 +1,6 @@
 import telebot
-    
+from bot_logic import gen_pass
+
 # Замени 'TOKEN' на токен твоего бота
 # Этот токен ты получаешь от BotFather, чтобы бот мог работать
 bot = telebot.TeleBot("")
@@ -16,8 +17,12 @@ def send_hello(message):
 def send_bye(message):
     bot.reply_to(message, "Пока! Удачи!")
 
+@bot.message_handler(commands=['gen_pass'])
+def send_pass(message):
+    bot.reply_to(message, gen_pass(length = 7))
+
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
-    bot.reply_to(message, message.text)
+    bot.send_messange(message.chat.id, message.text)
 
 bot.polling()
