@@ -19,10 +19,11 @@ def send_bye(message):
 
 @bot.message_handler(commands=['gen_pass'])
 def send_pass(message):
-    bot.reply_to(message, gen_pass(length = 7))
+    l = int(message.text.split()[1])
+    bot.send_message(message, gen_pass(l))
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
-    bot.send_messange(message.chat.id, message.text)
+    bot.send_message(message.chat.id, message.text)
 
 bot.polling()
