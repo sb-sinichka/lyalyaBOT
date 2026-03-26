@@ -19,8 +19,12 @@ def send_bye(message):
 
 @bot.message_handler(commands=['gen_pass'])
 def send_pass(message):
-    l = int(message.text.split()[1])
-    bot.send_message(message, gen_pass(l))
+    words = message.text.split()
+    if len(words) > 1:
+        l = int(words[1])
+        bot.send_message(message.chat.id, gen_pass(l))
+    else:
+        bot.send_message(message.chat.id, 'нужно указать длину пароля')
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
