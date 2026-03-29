@@ -17,6 +17,20 @@ def send_hello(message):
 def send_bye(message):
     bot.reply_to(message, "Пока! Удачи!")
 
+@bot.message_handler(func=lambda m: True, content_types=['new_chat_members'])
+def on_user_joins(message):
+    for user in message.new_chat_members:
+
+        name = user.first_name
+        if hasattr(user, 'last_name') and user.last_name is not None:
+            name += u" {}".format(user.last_name)
+
+        if hasattr(user, 'username') and user.username is not None:
+            name += u" (@{})".format(user.username)
+
+        bot.reply_to(message, 'хеллоу {name}'.format(name=name))
+
+
 @bot.message_handler(commands=['gen_pass'])
 def send_pass(message):
     words = message.text.split()
