@@ -51,6 +51,14 @@ def send_heh(message):
 @bot.message_handler(commands=['info', 'help'])
 def on_info(message):
 
-    bot.reply_to(message, 'привет я бот помогаю тут иногда,напиши /heh чтобы похихикать')
+    bot.reply_to(message, 'привет я бот помогаю тут иногда ээээ,напиши /heh чтобы похихикать или /joke чтобы увидеть несмешной анекдот ок')
+
+
+@bot.message_handler(commands=['joke'])
+def send_joke(message):
+
+    bot.reply_to(message, 'купил физрук шляпу,а она еиу как раз два раз два раз два')
+
+
 
 bot.polling()
