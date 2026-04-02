@@ -1,5 +1,7 @@
 import telebot
 from bot_logic import gen_pass
+import os
+import random
 
 # Замени 'TOKEN' на токен твоего бота
 # Этот токен ты получаешь от BotFather, чтобы бот мог работать
@@ -62,7 +64,8 @@ def send_joke(message):
 
 @bot.message_handler(commands=['meme'])
 def send_meme(message):
-    with open('images/Горячий песок.jpg', 'rb') as f:  
+    files = os.listdir('memes')
+    with open(f'memes/{random.choice(files)}', 'rb') as f:  
         bot.send_photo(message.chat.id, f)  
 
 
