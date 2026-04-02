@@ -60,5 +60,10 @@ def send_joke(message):
     bot.reply_to(message, 'купил физрук шляпу,а она еиу как раз два раз два раз два')
 
 
+@bot.message_handler(commands=['meme'])
+def send_meme(message):
+    with open('images/Горячий песок.jpg', 'rb') as f:  
+        bot.send_photo(message.chat.id, f)  
+
 
 bot.polling()
