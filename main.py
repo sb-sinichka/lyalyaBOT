@@ -69,4 +69,12 @@ def send_meme(message):
         bot.send_photo(message.chat.id, f)  
 
 
+@bot.message_handler()
+def send_keyword(message):
+    words = message.text.split()
+    if 'хайп' in words:
+        with open(f'memes/❗ ТГ_ ШИЗЕЮ.jpg', 'rb') as f:  
+            bot.send_photo(message.chat.id, f)  
+
+
 bot.polling()
